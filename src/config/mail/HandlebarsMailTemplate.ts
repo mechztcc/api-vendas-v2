@@ -1,4 +1,5 @@
 import handlebars from 'handlebars';
+import fs from 'fs';
 
 interface ITemplateVariable {
   // This variable is dinamic, can have 1 or any values of the type  string / number
@@ -6,16 +7,16 @@ interface ITemplateVariable {
 }
 
 interface IParseMailTemplate {
-  template: string;
+  file: string;
   variables: ITemplateVariable;
 }
 
 class HandlebarsMailTemplate {
-  public async parse({
-    template,
-    variables,
-  }: IParseMailTemplate): Promise<string> {
-    const parseTemplate = handlebars.compile(template);
+  public async parse({ file, variables }: IParseMailTemplate): Promise<string> {
+    const templateFileContent = await fs.promises.readFile(file, {
+      encoding: 'utf-8',
+    });
+    const parseTemplate = handlebars.compile(templateFileContent);
     return parseTemplate(variables);
   }
 }
