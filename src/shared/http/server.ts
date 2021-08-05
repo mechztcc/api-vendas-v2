@@ -1,5 +1,6 @@
 import uploadConfig from '@config/upload';
 import 'reflect-metadata';
+import { pagination } from 'typeorm-pagination';
 
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
@@ -14,6 +15,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(pagination);
 app.use('/files', express.static(uploadConfig.directory));
 app.use(routes);
 app.use(errors());
