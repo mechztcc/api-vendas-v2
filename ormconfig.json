@@ -1,9 +1,10 @@
 {
     "type": "postgres",
-    "host": "tuffi.db.elephantsql.com",
-    "username": "coghyeyn",
-    "password": "h_RAAlwP2Xr9zymVeTp3QvCPM6SkGeY1",
-    "database": "coghyeyn",
+    "host": "localhost",
+    "port": 8080,
+    "username": "postgres",
+    "password": "docker",
+    "database": "apivendas",
     "migrations": ["./src/shared/typeorm/migrations/*.ts"],
     "cli": {
         "migrationsDir": "./src/shared/typeorm/migrations"
