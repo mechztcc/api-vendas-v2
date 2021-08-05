@@ -1,5 +1,6 @@
-import uploadConfig from '@config/upload';
 import 'reflect-metadata';
+import 'dotenv/config';
+import uploadConfig from '@config/upload';
 import { pagination } from 'typeorm-pagination';
 
 import express, { NextFunction, Request, Response } from 'express';
@@ -10,6 +11,7 @@ import '@shared/typeorm';
 
 import routes from './routes/index';
 import AppError from '@shared/errors/AppError';
+import process from 'node:process';
 
 const app = express();
 
@@ -36,6 +38,8 @@ app.use(
       
   },
 );
+
+
 
 app.listen(3000, () => {
   console.log('Server Running at localhost:3000/ 🌶️');
