@@ -1,5 +1,4 @@
-import Customer from "@modules/customers/typeorm/entities/Customer";
-import Product from "@modules/products/typeorm/entities/Product";
+import Product from "../../../products/typeorm/entities/Product";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import Order from "./Order";
 
