@@ -1,5 +1,5 @@
-import 'reflect-metadata';
 import 'dotenv/config';
+import 'reflect-metadata';
 import uploadConfig from '@config/upload';
 import { pagination } from 'typeorm-pagination';
 
@@ -11,7 +11,7 @@ import '@shared/typeorm';
 
 import routes from './routes/index';
 import AppError from '@shared/errors/AppError';
-import process from 'node:process';
+
 
 const app = express();
 
@@ -39,8 +39,9 @@ app.use(
   },
 );
 
+const port = process.env.APP_PORT;
 
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log('Server Running at localhost:3000/ 🌶️');
 });
