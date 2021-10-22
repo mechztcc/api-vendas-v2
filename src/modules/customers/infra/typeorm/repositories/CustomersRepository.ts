@@ -3,7 +3,7 @@ import { ICustomersRepository } from '@modules/customers/domain/repositories/ICu
 import { Repository, getRepository } from 'typeorm';
 import Customer from '../entities/Customer';
 
-class CustomersRepository implements ICustomersRepository {
+export class CustomersRepository implements ICustomersRepository {
   private ormRepository: Repository<Customer>;
 
   constructor() {
@@ -42,5 +42,3 @@ class CustomersRepository implements ICustomersRepository {
     return customer;
   }
 }
-
-export default CustomersRepository;

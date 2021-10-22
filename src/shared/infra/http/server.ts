@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import 'reflect-metadata';
+import '@shared/container';
 import uploadConfig from '@config/upload';
 import { pagination } from 'typeorm-pagination';
 
@@ -21,20 +22,14 @@ app.use('/files', express.static(uploadConfig.directory));
 app.use(routes);
 app.use(errors());
 
-app.use(
-  (error: Error, request: Request, response: Response, next: NextFunction) => {
-    if (error instanceof AppError) {
-      console.log(error);
-      return response
-        .status(error.statusCode)
-        .json({ status: 'error', message: error.message });
-    }
+app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
+  if (error instanceof AppError) {
     console.log(error);
-    return response
-      .status(500)
-      .json({ status: 'error', message: 'Internal Server Error' });
-  },
-);
+    return response.status(error.statusCode).json({ status: 'error', message: error.message });
+  }
+  console.log(error);
+  return response.status(500).json({ status: 'error', message: 'Internal Server Error' });
+});
 
 const port = process.env.APP_PORT;
 
