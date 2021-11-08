@@ -1,3 +1,4 @@
+import { ICustomer } from './../../../../customers/domain/models/ICustomer';
 import { IOrdersRepository } from './../../../domain/repositories/IOrdersRepository';
 import Customer from '@modules/customers/infra/typeorm/entities/Customer';
 import { EntityRepository, Repository } from 'typeorm';

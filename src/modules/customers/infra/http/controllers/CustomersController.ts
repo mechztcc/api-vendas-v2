@@ -17,7 +17,7 @@ class CustomersController {
 
   public async show(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const showCostumers = new ShowCustomerService();
+    const showCostumers = container.resolve(ShowCustomerService);
 
     const customer = await showCostumers.execute({ id });
     return response.json(customer);
@@ -37,7 +37,7 @@ class CustomersController {
     const { name, email } = request.body;
     const { id } = request.params;
 
-    const updateCustomers = new UpdateCustomerService();
+    const updateCustomers = container.resolve(UpdateCustomerService);
     const customer = await updateCustomers.execute({ id, name, email });
 
     return response.json(customer);
@@ -46,7 +46,7 @@ class CustomersController {
   public async delete(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
-    const deleteCustomer = new DeleteCustomerService();
+    const deleteCustomer = container.resolve(DeleteCustomerService);
 
     await deleteCustomer.execute({ id });
     return response.json([]);

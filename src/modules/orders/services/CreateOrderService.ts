@@ -3,7 +3,7 @@ import { IOrdersRepository } from './../domain/repositories/IOrdersRepository';
 import { CustomersRepository } from '@modules/customers/infra/typeorm/repositories/CustomersRepository';
 import { ProductRepository } from '@modules/products/infra/typeorm/repositories/ProductsRepository';
 import AppError from '@shared/errors/AppError';
-import { inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import { getCustomRepository } from 'typeorm';
 import Order from '../infra/typeorm/entities/Order';
 
@@ -17,6 +17,7 @@ interface IRequest {
   products: IProduct[];
 }
 
+@injectable()
 class CreateOrderService {
   constructor(
     @inject('OrdersRepository') private ordersRepository: IOrdersRepository,
