@@ -1,9 +1,11 @@
+import { ICustomersRepository } from './../../customers/domain/repositories/ICustomersRepository';
+import { IOrdersRepository } from './../domain/repositories/IOrdersRepository';
 import { CustomersRepository } from '@modules/customers/infra/typeorm/repositories/CustomersRepository';
 import { ProductRepository } from '@modules/products/infra/typeorm/repositories/ProductsRepository';
 import AppError from '@shared/errors/AppError';
+import { inject } from 'tsyringe';
 import { getCustomRepository } from 'typeorm';
 import Order from '../infra/typeorm/entities/Order';
-import OrdersRepository from '../infra/typeorm/repositories/OrdersRepository';
 
 interface IProduct {
   id: string;
@@ -16,12 +18,15 @@ interface IRequest {
 }
 
 class CreateOrderService {
+  constructor(
+    @inject('OrdersRepository') private ordersRepository: IOrdersRepository,
+    @inject('CustomersRepository') private customersRepository: ICustomersRepository,
+  ) {}
+
   public async execute({ customer_id, products }: IRequest): Promise<Order> {
-    const ordersRepository = getCustomRepository(OrdersRepository);
-    const customersRepository = getCustomRepository(CustomersRepository);
     const productsRepository = getCustomRepository(ProductRepository);
 
-    const customerExists = await customersRepository.findById(customer_id);
+    const customerExists = await this.customersRepository.findById(customer_id);
 
     if (!customerExists) {
       throw new AppError('Could not find any customer with the given id.');
@@ -60,7 +65,7 @@ class CreateOrderService {
       price: existsProducts.filter(p => p.id === product.id)[0].price,
     }));
 
-    const order = await ordersRepository.createOrder({
+    const order = await this.ordersRepository.createOrder({
       customer: customerExists,
       products: serializedProducts,
     });
