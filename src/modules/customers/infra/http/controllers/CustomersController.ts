@@ -8,7 +8,7 @@ import UpdateCustomerService from '../../../services/UpdateCustomerService';
 
 class CustomersController {
   public async index(request: Request, response: Response): Promise<Response> {
-    const listCostumers = new ListCustomerService();
+    const listCostumers = container.resolve(ListCustomerService);
 
     const customers = await listCostumers.execute();
 
