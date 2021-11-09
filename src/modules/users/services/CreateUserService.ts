@@ -1,11 +1,8 @@
-import { IUser } from './../domain/models/IUser';
-import { IUsersRepository } from './../domain/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
 import { hash } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
-import { getCustomRepository } from 'typeorm';
-import User from '../infra/typeorm/entities/User';
-import UserRepository from '../infra/typeorm/repositories/UsersRepository';
+import { IUser } from './../domain/models/IUser';
+import { IUsersRepository } from './../domain/repositories/IUsersRepository';
 
 interface IRequest {
   name: string;
