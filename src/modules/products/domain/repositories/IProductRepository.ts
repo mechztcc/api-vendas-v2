@@ -18,4 +18,6 @@ export interface IProductRepository {
   findOne(id: string): Promise<IProduct>;
 
   remove(product: IProduct): Promise<IProduct>;
+
+  find(): Promise<IProduct[]>;
 }
