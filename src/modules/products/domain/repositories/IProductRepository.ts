@@ -14,4 +14,8 @@ export interface IProductRepository {
   create(product: IProductCreate): Promise<IProduct>;
 
   save(product: IProduct): Promise<IProduct>;
+
+  findOne(id: string): Promise<IProduct>;
+
+  remove(product: IProduct): Promise<IProduct>;
 }

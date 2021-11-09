@@ -48,7 +48,7 @@ export default class ProductsController {
   public async delete(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
-    const deleteProduct = new DeleteProductService();
+    const deleteProduct = container.resolve(DeleteProductService);
 
     await deleteProduct.execute({ id });
 

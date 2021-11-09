@@ -15,6 +15,14 @@ export class ProductRepository implements IProductRepository {
   constructor() {
     this.ormRepository = getRepository(Product);
   }
+  public async findOne(id: string): Promise<IProduct> {
+    const product = await this.ormRepository.findOne(id);
+    return product;
+  }
+  public async remove(product: Product): Promise<IProduct> {
+    const productRemoved = await this.ormRepository.remove(product);
+    return productRemoved;
+  }
 
   public async create(product: IProduct): Promise<IProduct> {
     const productCreated = await this.ormRepository.create(product);
