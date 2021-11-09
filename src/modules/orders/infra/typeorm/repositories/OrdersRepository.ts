@@ -4,8 +4,8 @@ import Customer from '@modules/customers/infra/typeorm/entities/Customer';
 import { EntityRepository, Repository } from 'typeorm';
 import Order from '../entities/Order';
 
-export interface IProduct {
-  product_id: string;
+interface IProduct {
+  product_id?: string;
   price: number;
   quantity: number;
 }
