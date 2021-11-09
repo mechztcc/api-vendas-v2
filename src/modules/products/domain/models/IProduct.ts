@@ -3,13 +3,13 @@ import { IOrdersProducts } from './../../../orders/domain/models/IOrdersProducts
 export interface IProduct {
   id?: string;
 
-  order_products: IOrdersProducts[];
+  order_products?: IOrdersProducts[];
 
-  name: string;
+  name?: string;
 
-  price: number;
+  price?: number;
 
-  quantity: number;
+  quantity?: number;
 
   created_at?: Date;
 

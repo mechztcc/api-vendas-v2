@@ -4,7 +4,7 @@ import { IProductRepository } from './../../../domain/repositories/IProductRepos
 import { EntityRepository, In, Repository, getRepository } from 'typeorm';
 import Product from '../entities/Product';
 
-interface IFindProducts {
+export interface IFindProducts {
   id: string;
 }
 
@@ -35,7 +35,7 @@ export class ProductRepository implements IProductRepository {
     return productCreated;
   }
   public async save(product: IProduct): Promise<IProduct> {
-    const productCreated = await this.ormRepository.create(product);
+    const productCreated = await this.ormRepository.save(product);
     return productCreated;
   }
 
@@ -49,7 +49,7 @@ export class ProductRepository implements IProductRepository {
     return product;
   }
 
-  public async findAllByIds(products: IFindProducts[]): Promise<IProduct[]> {
+  public async findAllByIds(products: IProduct[]): Promise<IProduct[]> {
     const productIds = products.map(product => product.id);
     const existsProducts = await this.ormRepository.find({ where: { id: In(productIds) } });
 

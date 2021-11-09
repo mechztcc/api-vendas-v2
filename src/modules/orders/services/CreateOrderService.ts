@@ -1,18 +1,18 @@
+import { IProduct } from './../../products/domain/models/IProduct';
+import { IOrder } from './../domain/models/IOrder';
 import { ICustomersRepository } from './../../customers/domain/repositories/ICustomersRepository';
 import { IOrdersRepository } from './../domain/repositories/IOrdersRepository';
 import { CustomersRepository } from '@modules/customers/infra/typeorm/repositories/CustomersRepository';
 import { ProductRepository } from '@modules/products/infra/typeorm/repositories/ProductsRepository';
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
-import { getCustomRepository } from 'typeorm';
-import Order from '../infra/typeorm/entities/Order';
 
-interface IProduct {
-  id: string;
-  quantity: number;
-}
+// interface IProduct {
+//   id: string;
+//   quantity: number;
+// }
 
-interface IRequest {
+export interface UpdateProductQuantity {
   customer_id: string;
   products: IProduct[];
 }
@@ -22,18 +22,17 @@ class CreateOrderService {
   constructor(
     @inject('OrdersRepository') private ordersRepository: IOrdersRepository,
     @inject('CustomersRepository') private customersRepository: ICustomersRepository,
+    @inject('ProductsRepository') private productsRepository: ProductRepository,
   ) {}
 
-  public async execute({ customer_id, products }: IRequest): Promise<Order> {
-    const productsRepository = getCustomRepository(ProductRepository);
-
+  public async execute({ customer_id, products }: UpdateProductQuantity): Promise<IOrder> {
     const customerExists = await this.customersRepository.findById(customer_id);
 
     if (!customerExists) {
       throw new AppError('Could not find any customer with the given id.');
     }
 
-    const existsProducts = await productsRepository.findAllByIds(products);
+    const existsProducts = await this.productsRepository.findAllByIds(products);
 
     if (!existsProducts.length) {
       throw new AppError('Could not find any products with the given ids.');
@@ -79,7 +78,7 @@ class CreateOrderService {
         existsProducts.filter(p => p.id === product.product_id)[0].quantity - product.quantity,
     }));
 
-    await productsRepository.save(updatedProductQuantity);
+    await this.productsRepository.save(updatedProductQuantity);
 
     return order;
   }
