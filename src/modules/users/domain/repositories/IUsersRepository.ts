@@ -8,4 +8,6 @@ export interface IUsersRepository {
   create(user: IUser): Promise<IUser | undefined>;
 
   find(): Promise<IUser[] | undefined>;
+
+  save(user: IUser): Promise<IUser | undefined>;
 }

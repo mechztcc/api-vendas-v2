@@ -19,7 +19,7 @@ class ProfileController {
     const user_id = request.user.id;
     const { name, email, password, old_password } = request.body;
 
-    const updateProfile = new UpdateProfileService();
+    const updateProfile = container.resolve(UpdateProfileService);
 
     const user = await updateProfile.execute({
       user_id,
