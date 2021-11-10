@@ -35,9 +35,11 @@ export class FakeUsersRepository implements IUsersRepository {
 
     return user;
   }
-  find(): Promise<IUser[]> {
-    throw new Error('Method not implemented.');
+
+  public async find(): Promise<IUser[]> {
+    return this.users;
   }
+
   save(user: IUser): Promise<IUser> {
     throw new Error('Method not implemented.');
   }

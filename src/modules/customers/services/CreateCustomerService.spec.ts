@@ -16,6 +16,7 @@ describe('CreateCustomer', () => {
 
     expect(customer).toHaveProperty('id');
   });
+
   it('Should not be able to create a two customer with the same email', async () => {
     const fakeCustomersRepository = new FakeCustomersRepository();
 

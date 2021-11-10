@@ -2,7 +2,7 @@ import { container } from 'tsyringe';
 import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import CreateUserService from '../../../services/CreateUser/CreateUserService';
-import ListUserService from '../../../services/ListUserService';
+import ListUserService from '../../../services/ListUser/ListUserService';
 
 class UsersController {
   public async index(request: Request, response: Response): Promise<Response> {
