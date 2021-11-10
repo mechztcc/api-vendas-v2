@@ -1,7 +1,7 @@
 import { container } from 'tsyringe';
 import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
-import CreateSessionsService from '../../../services/CreateSessionsService';
+import CreateSessionsService from '../../../services/CreateSession/CreateSessionsService';
 
 class SessionsController {
   public async create(request: Request, response: Response): Promise<Response> {

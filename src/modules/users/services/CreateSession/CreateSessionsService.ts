@@ -1,13 +1,13 @@
-import { IUsersRepository } from './../domain/repositories/IUsersRepository';
+import { IUsersRepository } from '../../domain/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import authConfig from '../../../config/auth';
+import authConfig from '../../../../config/auth';
 import { getCustomRepository } from 'typeorm';
-import User from '../infra/typeorm/entities/User';
-import UsersRepository from '../infra/typeorm/repositories/UsersRepository';
+import User from '../../infra/typeorm/entities/User';
+import UsersRepository from '../../infra/typeorm/repositories/UsersRepository';
 import { inject, injectable } from 'tsyringe';
-import { IUser } from '../domain/models/IUser';
+import { IUser } from '../../domain/models/IUser';
 
 interface IRequest {
   email: string;

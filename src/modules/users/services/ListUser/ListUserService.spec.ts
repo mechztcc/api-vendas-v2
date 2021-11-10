@@ -1,4 +1,3 @@
-import User from '@modules/users/infra/typeorm/entities/User';
 import { FakeUsersRepository } from './../../domain/repositories/fakes/FakeUsersRepository';
 import ListUserService from './ListUserService';
 
