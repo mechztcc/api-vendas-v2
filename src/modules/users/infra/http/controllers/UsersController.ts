@@ -1,7 +1,7 @@
 import { container } from 'tsyringe';
 import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
-import CreateUserService from '../../../services/CreateUserService';
+import CreateUserService from '../../../services/CreateUser/CreateUserService';
 import ListUserService from '../../../services/ListUserService';
 
 class UsersController {

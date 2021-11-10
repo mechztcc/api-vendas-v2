@@ -20,6 +20,12 @@ class FakeCustomersRepository implements ICustomersRepository {
     return customer;
   }
 
+  public async remove(customer: ICustomer): Promise<any> {
+    const customers = this.customers.filter(customer => {
+      return customer != customer;
+    });
+  }
+
   public async save(customer: Customer): Promise<Customer> {
     Object.assign(this.customers, customer);
     return customer;
