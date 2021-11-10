@@ -10,6 +10,6 @@ describe('ListUser', () => {
 
     const users = await listUser.execute();
 
-    expect(users).toStrictEqual(Array<User>());
+    expect(users).toBeInstanceOf(Array);
   });
 });

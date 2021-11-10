@@ -4,10 +4,21 @@ import { v4 as uuidv4 } from 'uuid';
 import User from '@modules/users/infra/typeorm/entities/User';
 
 export class FakeUsersRepository implements IUsersRepository {
+  public user1 = new User();
+  private users: IUser[] = [];
+
+  constructor() {
+    (this.user1.id = '2'),
+      (this.user1.name = 'Teste'),
+      (this.user1.email = 'user@email.com'),
+      (this.user1.password = '123123'),
+      (this.user1.avatar = null),
+      this.users.push(this.user1);
+  }
+
   findByName(name: string): Promise<IUser> {
     throw new Error('Method not implemented.');
   }
-  private users: IUser[] = [];
 
   public async create(user: IUser): Promise<IUser> {
     const userCreated = new User();

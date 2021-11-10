@@ -1,7 +1,7 @@
 import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import ShowProfileService from '../../../services/ShowProfileService';
+import ShowProfileService from '../../../services/ShowProfile/ShowProfileService';
 import UpdateProfileService from '../../../services/UpdateProfileService';
 
 class ProfileController {

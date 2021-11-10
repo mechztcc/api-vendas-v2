@@ -1,10 +1,7 @@
-import { IUsersRepository } from './../domain/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
-import { getCustomRepository } from 'typeorm';
-import User from '../infra/typeorm/entities/User';
-import UsersRepository from '../infra/typeorm/repositories/UsersRepository';
-import { IUser } from '../domain/models/IUser';
+import { IUser } from '../../domain/models/IUser';
+import { IUsersRepository } from '../../domain/repositories/IUsersRepository';
 
 interface IRequest {
   user_id: string;
